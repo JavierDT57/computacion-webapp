@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
 import { RegistroScreenComponent } from './screens/registro-screen/registro-screen.component';
+import { NavbarComponent } from './partials/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginScreenComponent,
-    RegistroScreenComponent
+    RegistroScreenComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
