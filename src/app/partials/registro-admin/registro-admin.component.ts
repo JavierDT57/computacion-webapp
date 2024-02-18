@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AdministradorService } from 'src/app/services/administrador.service';
+declare var $: any;
 
 @Component({
   selector: 'app-registro-admin',
@@ -6,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro-admin.component.scss']
 })
 export class RegistroAdminComponent implements OnInit {
+  @Input() rol:string = "";
 
   public admin:any = {};
   public editar: boolean = false;
+  public errors:any = {};
    //Para contraseñas
    public hide_1: boolean = false;
    public hide_2: boolean = false;
@@ -16,8 +20,13 @@ export class RegistroAdminComponent implements OnInit {
    public inputType_2: string = 'password';
 
 
-  constructor() { }
+  constructor(
+    private administradoresService: AdministradorService
+  ) {}
   ngOnInit(): void {
+    this.admin = this.administradoresService.esquemaAdmin();
+    this.admin.rol = this.rol;
+    console.log("Admin: ", this.admin);
   }
 
   //funciones de botones del form
@@ -26,7 +35,15 @@ export class RegistroAdminComponent implements OnInit {
   }
 
   public registrar(){
+        //Validar
+        this.errors = [];
 
+        this.errors = this.administradoresService.validarAdmin(this.admin, this.editar);
+        if(!$.isEmptyObject(this.errors)){
+          return false;
+        }
+
+        // TODO:Después registraremos admin
   }
 
   public actualizar(){
