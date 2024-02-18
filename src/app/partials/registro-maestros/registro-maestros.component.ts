@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MaestrosService } from 'src/app/services/maestros.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-registro-maestros',
@@ -21,9 +24,15 @@ export class RegistroMaestrosComponent implements OnInit{
 
 
 
-  constructor() { }
+
+
+  constructor(
+    private maestrosService: MaestrosService
+  ) { }
 
   ngOnInit(): void {
+    this.maestro = this.maestrosService.esquemaMaestro();
+    this.maestro.rol = this.rol;
   }
 
 
@@ -33,6 +42,16 @@ export class RegistroMaestrosComponent implements OnInit{
   }
 
   public registrar(){
+
+        //Validar
+        this.errors = [];
+
+        this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
+        if(!$.isEmptyObject(this.errors)){
+          return false;
+        }
+
+        // TODO:Después registraremos admin
 
   }
 

@@ -65,6 +65,29 @@
       </mat-form-field>
       <div *ngIf="errors.cubiculo" class="invalid-feedback">{{ errors.cubiculo }}</div>
 
+
+
+
+
+
+
+
+
+
+
+      <div class="select-materias">
+        <div class="row mt-3 mb-3">
+          <div class="form-group col-12">
+            <label class="title-materias" for="tipo_usuario">Selecciona las materias a impartir</label>
+          </div>
+        </div>
+        <div class="checkbox-group" *ngFor="let materia of materias; let i = index">
+          <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{materia.nombre}}">
+              <div class="d-checkbox-nombre">{{materia.nombre}}</div>
+          </mat-checkbox>
+        </div>
+      </div>
+
       <div class="section-buttons">
         <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
         <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
