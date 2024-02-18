@@ -80,6 +80,19 @@ public materias:any[]= [
 
   }
 
+  //Funciones para fecha
+  //Función para detectar el cambio de fecha
+  public changeFecha(event :any){
+    console.log(event);
+    console.log(event.value.toISOString());
+
+    this.maestro.fecha_nacimiento = event.value.toISOString().split("T")[0];
+    console.log("Fecha: ", this.maestro.fecha_nacimiento);
+  }
+
+
+
+
   //Checkbox para materias
 
   public checkboxChange(event:any){
