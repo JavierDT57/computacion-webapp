@@ -45,7 +45,14 @@
           </mat-form-field>
           <div *ngIf="errors.confirmar_password" class="invalid-feedback">{{ errors.confirmar_password }}</div>
 
-<!--Seccio  de fecha por hacer-->
+          <!-- Cambio de input de fecha -->
+          <mat-form-field class="mat-input" appearance="outline">
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="alumno.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="errors.fecha_nacimiento" class="invalid-feedback">{{ errors.fecha_nacimiento }}</div>
 
 
 

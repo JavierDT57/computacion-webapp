@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AlumnosService } from 'src/app/services/alumnos.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-registro-alumnos',
@@ -19,12 +22,13 @@ export class RegistroAlumnosComponent implements OnInit{
   public inputType_2: string = 'password';
 
   constructor(
-
+    private alumnosService: AlumnosService
   ) { }
 
 
   ngOnInit(): void {
-
+    this.alumno = this.alumnosService.esquemaAlumno();
+    this.alumno.rol = this.rol;
   }
 
 
@@ -35,12 +39,31 @@ export class RegistroAlumnosComponent implements OnInit{
 
    public registrar(){
 
+        //Validar
+        this.errors = [];
+
+        this.errors = this.alumnosService.validarAlumno(this.alumno, this.editar);
+        if(!$.isEmptyObject(this.errors)){
+          return false;
+        }
+
+        // TODO:Después registraremos admin
 
    }
 
    public actualizar(){
 
    }
+
+
+  //Función para detectar el cambio de fecha
+  public changeFecha(event :any){
+    console.log(event);
+    console.log(event.value.toISOString());
+
+    this.alumno.fecha_nacimiento = event.value.toISOString().split("T")[0];
+    console.log("Fecha: ", this.alumno.fecha_nacimiento);
+  }
 
 
   //Funciones para password
