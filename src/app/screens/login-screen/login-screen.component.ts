@@ -50,7 +50,18 @@ export class LoginScreenComponent implements OnInit{
         if(!$.isEmptyObject(this.errors)){
           return false;
         }
+
+    //Si pasa la validación ir a la página de home
+    this.facadeService.login(this.username, this.password).subscribe(
+      (response)=>{
+        this.facadeService.saveUserData(response);
+        this.router.navigate(["home"]);
+      }, (error)=>{
+        alert("No se pudo iniciar sesión");
+      }
+    );
   }
+
 
   public registrar(){
     this.router.navigate(["registro-usuarios"]);
