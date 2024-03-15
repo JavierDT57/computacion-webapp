@@ -118,7 +118,7 @@ export class AlumnosService {
 
   //Aquí van los servicios HTTP
   //Servicio para registrar un nuevo usuario
-  public registrarAdmin (data: any): Observable <any>{
-    return this.http.post<any>(`${environment.url_api}/admin/`,data, httpOptions);
+  public registrarAlumno (data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/alumnos/`,data, httpOptions);
   }
 }
