@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MaestrosService } from 'src/app/services/maestros.service';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -48,7 +49,8 @@ public materias:any[]= [
 
 
   constructor(
-    private maestrosService: MaestrosService
+    private maestrosService: MaestrosService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +75,24 @@ public materias:any[]= [
         }
 
         // TODO:Después registraremos admin
+        //validar contrasena
+        if(this.maestro.password == this.maestro.confirmar_password){
+          this.maestrosService.registrarMaestro(this.maestro).subscribe(
+            (response: any) => {
+              alert("Usuario registrado correctamente");
+              console.log("Usuario registrado correctamente: ", response);
+              this.router.navigate(['/']);
+            },
+            (error: any) => {
+              alert("Error al registrar usuario");
+            }
+          );
+
+        }else{
+          alert("Las contraseñas no coinciden");
+          this.maestro.password = "";
+          this.maestro.confirmar_password = "";
+        }
 
   }
 
