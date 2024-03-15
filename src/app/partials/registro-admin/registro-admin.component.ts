@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdministradorService } from 'src/app/services/administrador.service';
 declare var $: any;
 
@@ -21,8 +22,10 @@ export class RegistroAdminComponent implements OnInit {
 
 
   constructor(
-    private administradoresService: AdministradorService
+    private administradoresService: AdministradorService,
+    private router: Router
   ) {}
+
   ngOnInit(): void {
     this.admin = this.administradoresService.esquemaAdmin();
     this.admin.rol = this.rol;
@@ -44,6 +47,24 @@ export class RegistroAdminComponent implements OnInit {
         }
 
         // TODO:Después registraremos admin
+        //validar contrasena
+        if(this.admin.password == this.admin.confirmar_password){
+          this.administradoresService.registrarAdmin(this.admin).subscribe(
+            (response: any) => {
+              alert("Usuario registrado correctamente");
+              console.log("Usuario registrado correctamente: ", response);
+              this.router.navigate(['/']);
+            },
+            (error: any) => {
+              alert("Error al registrar usuario");
+            }
+          );
+
+        }else{
+          alert("Las contraseñas no coinciden");
+          this.admin.password = "";
+          this.admin.confirmar_password = "";
+        }
   }
 
   public actualizar(){
