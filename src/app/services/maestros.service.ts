@@ -99,4 +99,10 @@ export class MaestrosService {
     //Return arreglo
     return error;
   }
+
+  //Aquí van los servicios HTTP
+  //Servicio para registrar un nuevo usuario
+  public registrarMaestro (data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/maestros/`,data, httpOptions);
+  }
 }
