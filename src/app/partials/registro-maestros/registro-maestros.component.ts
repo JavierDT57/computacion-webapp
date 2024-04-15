@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { MaestrosService } from 'src/app/services/maestros.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FacadeService } from 'src/app/services/facade.service';
 
 declare var $: any;
 
@@ -10,17 +12,22 @@ declare var $: any;
   styleUrls: ['./registro-maestros.component.scss']
 })
 export class RegistroMaestrosComponent implements OnInit{
-  @Input() rol:string = "";
-
-  //Definir el JSON para maestros
-  public maestro:any = {};
-  public editar:boolean = false;
-  public errors:any = {};
+  @Input() rol: string = "";
+  @Input() datos_user: any = {};
   //Para contraseñas
   public hide_1: boolean = false;
   public hide_2: boolean = false;
   public inputType_1: string = 'password';
   public inputType_2: string = 'password';
+
+  public maestro:any= {};
+  public token: string = "";
+  public errors:any={};
+  public editar:boolean = false;
+  public idUser: Number = 0;
+  //Check
+  public valoresCheckbox: any = [];
+  public materias_json: any [] = [];
 
 //materias y areas de investigacion para form maestros
 //Para el select
@@ -49,13 +56,29 @@ public materias:any[]= [
 
 
   constructor(
+    private location : Location,
     private maestrosService: MaestrosService,
-    private router: Router
+    private router: Router,
+    public activatedRoute: ActivatedRoute,
+    private facadeService: FacadeService
   ) { }
 
   ngOnInit(): void {
-    this.maestro = this.maestrosService.esquemaMaestro();
-    this.maestro.rol = this.rol;
+    //El primer if valida si existe un parámetro en la URL
+    if(this.activatedRoute.snapshot.params['id'] != undefined){
+      this.editar = true;
+      //Asignamos a nuestra variable global el valor del ID que viene por la URL
+      this.idUser = this.activatedRoute.snapshot.params['id'];
+      console.log("ID User: ", this.idUser);
+      //Al iniciar la vista asignamos los datos del user
+      this.maestro = this.datos_user;
+    }else{
+      this.maestro = this.maestrosService.esquemaMaestro();
+      this.maestro.rol = this.rol;
+      this.token = this.facadeService.getSessionToken();
+    }
+    //Imprimir datos en consola
+    console.log("Maestro: ", this.maestro);
   }
 
 

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AdministradorService } from 'src/app/services/administrador.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FacadeService } from 'src/app/services/facade.service';
+import { Location } from '@angular/common';
 declare var $: any;
 
 @Component({
@@ -9,26 +11,45 @@ declare var $: any;
   styleUrls: ['./registro-admin.component.scss']
 })
 export class RegistroAdminComponent implements OnInit {
-  @Input() rol:string = "";
+  @Input() rol: string = "";
+  @Input() datos_user: any = {};
 
-  public admin:any = {};
-  public editar: boolean = false;
-  public errors:any = {};
-   //Para contraseñas
-   public hide_1: boolean = false;
-   public hide_2: boolean = false;
-   public inputType_1: string = 'password';
-   public inputType_2: string = 'password';
+ //Para contraseñas
+  public hide_1: boolean = false;
+  public hide_2: boolean = false;
+  public inputType_1: string = 'password';
+  public inputType_2: string = 'password';
+
+  public admin:any= {};
+  public token: string = "";
+  public errors:any={};
+  public editar:boolean = false;
+  public idUser: Number = 0;
 
 
   constructor(
     private administradoresService: AdministradorService,
-    private router: Router
+    private router: Router,
+    private location : Location,
+    public activatedRoute: ActivatedRoute,
+    private facadeService: FacadeService
   ) {}
 
   ngOnInit(): void {
-    this.admin = this.administradoresService.esquemaAdmin();
-    this.admin.rol = this.rol;
+    //El primer if valida si existe un parámetro en la URL
+    if(this.activatedRoute.snapshot.params['id'] != undefined){
+      this.editar = true;
+      //Asignamos a nuestra variable global el valor del ID que viene por la URL
+      this.idUser = this.activatedRoute.snapshot.params['id'];
+      console.log("ID User: ", this.idUser);
+      //Al iniciar la vista asignamos los datos del user
+      this.admin = this.datos_user;
+    }else{
+      this.admin = this.administradoresService.esquemaAdmin();
+      this.admin.rol = this.rol;
+      this.token = this.facadeService.getSessionToken();
+    }
+    //Imprimir datos en consola
     console.log("Admin: ", this.admin);
   }
 
