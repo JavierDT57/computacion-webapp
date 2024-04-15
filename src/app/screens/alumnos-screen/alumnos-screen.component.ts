@@ -96,7 +96,7 @@ export class AlumnosScreenComponent implements OnInit{
 
   //Funcion para editar
   public goEditar(idUser: number){
-    this.router.navigate(["registro-usuarios/alumno/" + idUser]);
+    this.router.navigate(["registro-usuarios/alumno/"+idUser]);
   }
 
   public delete(idUser: number){
@@ -107,7 +107,7 @@ export class AlumnosScreenComponent implements OnInit{
 //Esto va fuera de la llave que cierra la clase
 export interface DatosUsuario {
   id: number,
-  clave_alumno: number;
+  matricula: number;
   first_name: string;
   last_name: string;
   email: string;
