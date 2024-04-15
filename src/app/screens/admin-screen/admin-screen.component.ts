@@ -49,7 +49,7 @@ export class AdminScreenComponent implements OnInit{
   public delete(idUser: number){
     console.log("User: ", idUser);
     const dialogRef = this.dialog.open(EliminarUserModalComponent,{
-      data:{id:idUser, rol: 'administrador'}, //Se pasan los valores a trabes del componente
+      data:{id:idUser, rol: 'administrador'}, //Se pasan los valores a traves del componente
       height: '288px',
       width: '328px'
     });
