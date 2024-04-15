@@ -44,6 +44,22 @@ export class AdminScreenComponent implements OnInit{
   }
 
   public delete(idUser: number){
+    console.log("User: ", idUser);
+    const dialogRef = this.dialog.open(EliminarUserModalComponent,{
+      data:{id:idUser, rol: 'administrador'}, //Se pasan los valores a trabes del componente
+      height: '288px',
+      width: '328px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isDeleted){
+        console.log("Admin eliminado");
+        //Recargar pagina
+        window.location.reload();
+      }else{
+        alert("Administrador no eliminado")
+        console.log("Usuario no eliminado");
+      }
+    });
   }
 }
