@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { AlumnosService } from 'src/app/services/alumnos.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FacadeService } from 'src/app/services/facade.service';
 
 declare var $: any;
 
@@ -11,28 +13,48 @@ declare var $: any;
 })
 export class RegistroAlumnosComponent implements OnInit{
   @Input() rol:string = "";
-
   //JSON para alumnos
-  public alumno:any = {};
-  public editar:boolean = false;
-  public errors:any = {};
-  //Para contraseñas
+  @Input() datos_user:any = {}; //Input to receive the user data from the parent component
+
+  //Variables
+  public alumno:any = {}; //Object to store the student data
+  public editar:boolean = false; //Variable to know if the student is being edited
+  public errors:any = {}; //Object to store the errors
+  //For passwords
   public hide_1: boolean = false;
   public hide_2: boolean = false;
   public inputType_1: string = 'password';
   public inputType_2: string = 'password';
-
+  //Variables to store the token and user ID
+  public token : string = ""; //Variable to store the token
+  public idUser: Number = 0; //Variable to store the user ID
+  //Constructor
   constructor(
     private alumnosService: AlumnosService,
+    private location : Location,
+    public activatedRoute : ActivatedRoute,
+    private facadeService: FacadeService,
     private router: Router
   ) { }
 
 
   ngOnInit(): void {
-    this.alumno = this.alumnosService.esquemaAlumno();
-    this.alumno.rol = this.rol;
+     //El primer if valida si existe un parámetro en la URL
+     if(this.activatedRoute.snapshot.params['id'] != undefined){
+      this.editar = true;
+      //Asignamos a nuestra variable global el valor del ID que viene por la URL
+      this.idUser = this.activatedRoute.snapshot.params['id'];
+      console.log("ID User: ", this.idUser);
+      //Al iniciar la vista asignamos los datos del user
+      this.alumno = this.datos_user;
+    }else{
+      this.alumno = this.alumnosService.esquemaAlumno();
+      this.alumno.rol = this.rol;
+      this.token = this.facadeService.getSessionToken();
+    }
+    //Imprimir datos en consola
+    console.log("Alumno: ", this.alumno);
   }
-
 
    //funciones de botones del form
    public regresar(){
