@@ -102,15 +102,14 @@ export class RegistroAlumnosComponent implements OnInit{
     console.log("Paso la validacion");
     this.alumnosService.editarAlumno(this.alumno).subscribe(
       (response)=>{
-        alert("Alumno actualizado correctamente");
-        console.log("Alumno actualizado: ", response);
-        //Redireccionar a la vista principal
+        alert("Alumno editado correctamente");
+        console.log("Alumno editado: ", response);
+        //Si se editó, entonces mandar al home
         this.router.navigate(["home"]);
       }, (error)=>{
-        alert("No se pudo actualizar usuario");
+        alert("No se pudo editar el alumno");
       }
     );
-
   }
 
 
