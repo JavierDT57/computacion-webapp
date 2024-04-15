@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { FacadeService } from 'src/app/services/facade.service';
 
@@ -16,7 +18,8 @@ export class AdminScreenComponent implements OnInit{
   constructor(
     public facadeService: FacadeService,
     private administradoresService: AdministradorService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
