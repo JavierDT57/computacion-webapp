@@ -89,7 +89,25 @@ export class RegistroAdminComponent implements OnInit {
   }
 
   public actualizar(){
+    //Validación
+    this.errors = [];
 
+    this.errors = this.administradoresService.validarAdmin(this.admin, this.editar);
+    if(!$.isEmptyObject(this.errors)){
+      return false;
+    }
+    console.log("Pasó la validación");
+
+    this.administradoresService.editarAdmin(this.admin).subscribe(
+      (response)=>{
+        alert("Administrador editado correctamente");
+        console.log("Admin editado: ", response);
+        //Si se editó, entonces mandar al home
+        this.router.navigate(["home"]);
+      }, (error)=>{
+        alert("No se pudo editar el administrador");
+      }
+    );
   }
 
 
