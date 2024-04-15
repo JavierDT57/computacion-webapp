@@ -25,7 +25,7 @@ export class MaestrosService {
   public esquemaMaestro(){
     return {
       'rol':'',
-      'id_trabajador': '',
+      'clave_maestro': '',
       'first_name': '',
       'last_name': '',
       'email': '',
@@ -36,7 +36,7 @@ export class MaestrosService {
       'rfc': '',
       'cubiculo': '',
       'area_investigacion': '',
-      'materias_json': []
+      'materias_json': [],
     }
   }
 

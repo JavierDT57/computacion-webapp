@@ -113,5 +113,6 @@ export interface DatosUsuario {
   telefono: string,
   cubiculo: string,
   area_investigacion: string,
-  materias_json: [],
+  //materias_json: []
 }
+
