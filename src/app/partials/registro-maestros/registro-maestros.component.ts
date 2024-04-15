@@ -142,7 +142,6 @@ public materias:any[]= [
   }
 
 
-
     //Función para detectar el cambio de fecha
   public changeFecha(event :any){
     console.log(event);
