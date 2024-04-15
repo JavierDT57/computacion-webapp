@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -25,7 +26,8 @@ export class AlumnosScreenComponent implements OnInit{
   constructor(
     private alumnosService:AlumnosService,
     private facadeService:FacadeService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ){}
 
   ngOnInit(): void {
@@ -105,11 +107,11 @@ export class AlumnosScreenComponent implements OnInit{
 //Esto va fuera de la llave que cierra la clase
 export interface DatosUsuario {
   id: number,
-  matricula: number;
+  clave_alumno: number;
   first_name: string;
   last_name: string;
   email: string;
-  fecha_nacimiento: string,
+  fecha_de_nacimiento: string,
   curp: string,
   rfc: string,
   edad: number,

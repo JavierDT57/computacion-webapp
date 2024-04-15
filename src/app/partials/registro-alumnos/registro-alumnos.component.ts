@@ -93,8 +93,25 @@ export class RegistroAlumnosComponent implements OnInit{
    }
 
    public actualizar(){
+    //Validacion
+    this.errors = [];
+    this.errors = this.alumnosService.validarAlumno(this.alumno, this.editar);
+    if(!$.isEmptyObject(this.errors)){
+      return false;
+    }
+    console.log("Paso la validacion");
+    this.alumnosService.editarAlumno(this.alumno).subscribe(
+      (response)=>{
+        alert("Alumno actualizado correctamente");
+        console.log("Alumno actualizado: ", response);
+        //Redireccionar a la vista principal
+        this.router.navigate(["home"]);
+      }, (error)=>{
+        alert("No se pudo actualizar usuario");
+      }
+    );
 
-   }
+  }
 
 
   //Función para detectar el cambio de fecha
