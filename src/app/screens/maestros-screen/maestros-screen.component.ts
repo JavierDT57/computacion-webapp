@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { MaestrosService } from 'src/app/services/maestros.service';
+import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
 
 
 @Component({
@@ -28,6 +30,7 @@ constructor(
   public facadeService: FacadeService,
   private maestrosService:MaestrosService,
   private router: Router,
+  public dialog: MatDialog
 ){}
 
 ngOnInit(): void {
@@ -96,8 +99,24 @@ public goEditar(idUser: number){
   this.router.navigate(["registro-usuarios/maestro/"+idUser]);
 }
 
-public delete(idUser: number){
+public delete(idUser: number) {
+  console.log("User: ", idUser);
+  const dialogRef = this.dialog.open(EliminarUserModalComponent,{
+    data:{id:idUser, rol: 'maestro'}, //Se pasan los valores a trabes del componente
+    height: '288px',
+    width: '328px'
+  });
 
+  dialogRef.afterClosed().subscribe(result => {
+    if(result.isDeleted){
+      console.log("Maestro eliminado");
+      //Recargar pagina
+      window.location.reload();
+    }else{
+      alert("Maestro no eliminado")
+      console.log("Usuario no eliminado");
+    }
+  });
 }
 }
 
