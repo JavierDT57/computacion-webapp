@@ -84,7 +84,7 @@ public materias:any[]= [
 
   //funciones de botones del form
   public regresar(){
-
+    this.location.back();
   }
 
   public registrar(){

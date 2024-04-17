@@ -58,7 +58,7 @@ export class RegistroAlumnosComponent implements OnInit{
 
    //funciones de botones del form
    public regresar(){
-
+    this.location.back();
    }
 
    public registrar(){
