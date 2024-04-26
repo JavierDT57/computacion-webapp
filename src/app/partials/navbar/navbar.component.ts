@@ -30,6 +30,10 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(["registro-usuarios"]);
   }
 
+  public goRegistroMaterias(){
+    this.router.navigate(["registro-materias"]);
+  }
+
   public clickNavLink(link: string){
     this.router.navigate([link]);
     setTimeout(() => {
