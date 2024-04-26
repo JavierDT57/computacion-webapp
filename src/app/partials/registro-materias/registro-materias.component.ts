@@ -23,7 +23,7 @@ export class RegistroMateriasComponent {
   public idUser: Number = 0;
   //Check
   public valoresCheckbox: any = [];
-  public materias_json: any [] = [];
+  public dias_json: any [] = [];
 
 //materias y areas de investigacion para form maestros
 //Para el select
@@ -33,7 +33,7 @@ public areas: any[] = [
   {value: '3', viewValue: 'Ingenieria en Tecnologias de la Informacion'},
 ];
 
-public materias:any[]= [
+public dias:any[]= [
   {value: '1', nombre: 'Lunes'},
   {value: '2', nombre: 'Martes'},
   {value: '3', nombre: 'Miercoles'},
@@ -148,23 +148,23 @@ public materias:any[]= [
   public checkboxChange(event:any){
     //console.log("Evento: ", event);
     if(event.checked){
-      this.maestro.materias_json.push(event.source.value)
+      this.maestro.dias_json.push(event.source.value)
     }else{
       console.log(event.source.value);
-      this.maestro.materias_json.forEach((materia, i) => {
+      this.maestro.dias_json.forEach((materia, i) => {
         if(materia == event.source.value){
-          this.maestro.materias_json.splice(i,1)
+          this.maestro.dias_json.splice(i,1)
         }
       });
     }
-    console.log("Array materias: ", this.maestro);
+    console.log("Array dias: ", this.maestro);
   }
 
 
 
   public revisarSeleccion(nombre: string){
-    if(this.maestro.materias_json){
-      var busqueda = this.maestro.materias_json.find((element)=>element==nombre);
+    if(this.maestro.dias_json){
+      var busqueda = this.maestro.dias_json.find((element)=>element==nombre);
       if(busqueda != undefined){
         return true;
       }else{

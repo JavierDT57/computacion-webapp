@@ -12,16 +12,16 @@
       <!--Sección de NRC--NOMBRE -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>NRC</mat-label>
-        <input matInput [(ngModel)]="maestro.first_name" placeholder="Escribe el NRC de la Materia">
+        <input matInput [(ngModel)]="maestro.nrc_materia" placeholder="Escribe el NRC de la Materia">
       </mat-form-field>
-      <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
+      <div *ngIf="errors.nrc_materia" class="invalid-feedback">{{ errors.nrc_materia}}</div>
 
       <!--Sección de Nombre de la materia--APELLIDOS -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Nombre de la Materia</mat-label>
-        <input matInput [(ngModel)]="maestro.last_name" placeholder="Escribe el nombre de la Materia">
+        <input matInput [(ngModel)]="maestro.nombre_materia" placeholder="Escribe el nombre de la Materia">
       </mat-form-field>
-      <div *ngIf="errors.last_name" class="invalid-feedback">{{ errors.last_name }}</div>
+      <div *ngIf="errors.nombre_materia" class="invalid-feedback">{{ errors.nombre_materia }}</div>
 
 
       <!--Sección de fecha de nacimiento -->
@@ -36,29 +36,29 @@
       <!--Seccion de la Materia--CUBICULO-->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Seccion</mat-label>
-        <input matInput [(ngModel)]="maestro.cubiculo" placeholder="Escribe la seccion de la Materia">
+        <input matInput [(ngModel)]="maestro.seccion_materia" placeholder="Escribe la seccion de la Materia">
       </mat-form-field>
-      <div *ngIf="errors.cubiculo" class="invalid-feedback">{{ errors.cubiculo }}</div>
+      <div *ngIf="errors.seccion_materia" class="invalid-feedback">{{ errors.seccion_materia }}</div>
 
 
       <!--Seccion de salon--TELEFONO-->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Salon</mat-label>
-        <input matInput [(ngModel)]="maestro.telefono" mask='(000) 000-0000' placeholder="Escribe el salon de la Materia">
+        <input matInput [(ngModel)]="maestro.salon_materia" mask='(000) 000-0000' placeholder="Escribe el salon de la Materia">
       </mat-form-field>
-      <div *ngIf="errors.telefono" class="invalid-feedback">{{ errors.telefono }}</div>
+      <div *ngIf="errors.salon_materia" class="invalid-feedback">{{ errors.salon_materia}}</div>
 
 
        <!--Sección de Programa Educativo -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Programa educativo</mat-label>
-        <mat-select [(ngModel)]="maestro.area_investigacion">
+        <mat-select [(ngModel)]="maestro.programa_materia">
           <mat-option *ngFor="let area of areas" [value]="area.viewValue">
             {{area.viewValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <div *ngIf="errors.area_investigacion" class="invalid-feedback">{{ errors.area_investigacion }}</div>
+      <div *ngIf="errors.programa_materia" class="invalid-feedback">{{ errors.programa_materia }}</div>
 
       <!--Sección de los dias a impartir la materia -->
       <div class="select-materias">
@@ -67,9 +67,9 @@
             <label class="title-materias" for="tipo_usuario">Selecciona los dias a impartir</label>
           </div>
         </div>
-        <div class="checkbox-group" *ngFor="let materia of materias; let i = index">
-          <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{materia.nombre}}" [checked]="revisarSeleccion(materia.nombre)">
-              <div class="d-checkbox-nombre">{{materia.nombre}}</div>
+        <div class="checkbox-group" *ngFor="let dia of dias; let i = index">
+          <mat-checkbox class="checkbox-item opc-sc" name="opsc" (change)="checkboxChange($event)" value="{{dia.nombre}}" [checked]="revisarSeleccion(dia.nombre)">
+              <div class="d-checkbox-nombre">{{dia.nombre}}</div>
           </mat-checkbox>
         </div>
       </div>

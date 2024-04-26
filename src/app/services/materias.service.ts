@@ -25,13 +25,14 @@ export class MateriasService {
   public esquemaMateria(){
     return {
       'rol':'',
-      'first_name': '',
-      'last_name': '',
-      'fecha_nacimiento': '',
-      'telefono': '',
-      'cubiculo': '',
-      'area_investigacion': '',
-      'materias_json': [],
+      'nrc_materia': '',
+      'nombre_materia': '',
+      'seccion_materia': '',
+      'hora_inicial': '',
+      'hora_final': '',
+      'salon_materia': '',
+      'programa_materia': '',
+      'dias_json': [],
     }
   }
 
@@ -70,7 +71,7 @@ export class MateriasService {
       error["area_investigacion"] = this.errorService.required;
     }
 
-    if(data["materias_json"].length == 0){
+    if(data["dias_json"].length == 0){
       alert("Debes seleccionar materias para poder registrarte.");
     }
     //Return arreglo
