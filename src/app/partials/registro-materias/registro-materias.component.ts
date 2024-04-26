@@ -82,7 +82,7 @@ public dias:any[]= [
         //Validar
         this.errors = [];
 
-        this.errors = this.materiasService.validarMaestro(this.materia, this.editar);
+        this.errors = this.materiasService.validarMateria(this.materia, this.editar);
         if(!$.isEmptyObject(this.errors)){
           return false;
         }
@@ -109,7 +109,7 @@ public dias:any[]= [
     //Validación
     this.errors = [];
 
-    this.errors = this.materiasService.validarMaestro(this.materia, this.editar);
+    this.errors = this.materiasService.validarMateria(this.materia, this.editar);
     if(!$.isEmptyObject(this.errors)){
       return false;
     }

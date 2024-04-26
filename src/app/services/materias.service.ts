@@ -37,15 +37,10 @@ export class MateriasService {
   }
 
   //Validación para el formulario
-  public validarMaestro(data: any, editar: boolean){
-    console.log("Validando maestro... ", data);
+  public validarMateria(data: any, editar: boolean){
+    console.log("Validando materia... ", data);
     let error: any = [];
 
-
-
-    if(!this.validatorService.required(data["first_name"])){
-      error["first_name"] = this.errorService.required;
-    }
 
     if(!this.validatorService.required(data["nrc_materia"])){
       error["nrc_materia"] = this.errorService.required;
@@ -65,14 +60,17 @@ export class MateriasService {
       error["fecha_nacimiento"] = this.errorService.required;
     }
 
+    if(!this.validatorService.required(data["seccion_materia"])){
+      error["seccion_materia"] = this.errorService.required;
+    }else if(!this.validatorService.numeric(data["seccion_materia"])){
+      error["seccion_materia"] = this.errorService.numeric;
+      alert("Solo se aceptan valores numericos");
+    }
 
     if(!this.validatorService.required(data["salon_materia"])){
       error["salon_materia"] = this.errorService.required;
     }
 
-    if(!this.validatorService.required(data["cubiculo"])){
-      error["cubiculo"] = this.errorService.required;
-    }
 
     if(!this.validatorService.required(data["programa_materia"])){
       error["programa_materia"] = this.errorService.required;
