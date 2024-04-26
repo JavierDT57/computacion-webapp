@@ -47,8 +47,15 @@ export class MateriasService {
       error["first_name"] = this.errorService.required;
     }
 
-    if(!this.validatorService.required(data["last_name"])){
-      error["last_name"] = this.errorService.required;
+    if(!this.validatorService.required(data["nrc_materia"])){
+      error["nrc_materia"] = this.errorService.required;
+    }else if(!this.validatorService.numeric(data["nrc_materia"])){
+      error["nrc_materia"] = this.errorService.numeric;
+      alert("Solo se aceptan valores numericos");
+    }
+
+    if(!this.validatorService.required(data["nombre_materia"])){
+      error["nombre_materia"] = this.errorService.required;
     }
 
 
@@ -59,16 +66,16 @@ export class MateriasService {
     }
 
 
-    if(!this.validatorService.required(data["telefono"])){
-      error["telefono"] = this.errorService.required;
+    if(!this.validatorService.required(data["salon_materia"])){
+      error["salon_materia"] = this.errorService.required;
     }
 
     if(!this.validatorService.required(data["cubiculo"])){
       error["cubiculo"] = this.errorService.required;
     }
 
-    if(!this.validatorService.required(data["area_investigacion"])){
-      error["area_investigacion"] = this.errorService.required;
+    if(!this.validatorService.required(data["programa_materia"])){
+      error["programa_materia"] = this.errorService.required;
     }
 
     if(data["dias_json"].length == 0){

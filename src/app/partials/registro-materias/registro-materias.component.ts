@@ -101,10 +101,6 @@ public dias:any[]= [
             }
           );
 
-        }else{
-          alert("Las contraseñas no coinciden");
-          this.materia.password = "";
-          this.materia.confirmar_password = "";
         }
 
   }
