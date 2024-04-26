@@ -12,14 +12,14 @@
       <!--Sección de NRC--NOMBRE -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>NRC</mat-label>
-        <input matInput [(ngModel)]="maestro.nrc_materia" placeholder="Escribe el NRC de la Materia">
+        <input matInput [(ngModel)]="materia.nrc_materia" placeholder="Escribe el NRC de la Materia">
       </mat-form-field>
       <div *ngIf="errors.nrc_materia" class="invalid-feedback">{{ errors.nrc_materia}}</div>
 
       <!--Sección de Nombre de la materia--APELLIDOS -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Nombre de la Materia</mat-label>
-        <input matInput [(ngModel)]="maestro.nombre_materia" placeholder="Escribe el nombre de la Materia">
+        <input matInput [(ngModel)]="materia.nombre_materia" placeholder="Escribe el nombre de la Materia">
       </mat-form-field>
       <div *ngIf="errors.nombre_materia" class="invalid-feedback">{{ errors.nombre_materia }}</div>
 
@@ -27,7 +27,7 @@
       <!--Sección de fecha de nacimiento -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="maestro.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="materia.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -36,7 +36,7 @@
       <!--Seccion de la Materia--CUBICULO-->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Seccion</mat-label>
-        <input matInput [(ngModel)]="maestro.seccion_materia" placeholder="Escribe la seccion de la Materia">
+        <input matInput [(ngModel)]="materia.seccion_materia" placeholder="Escribe la seccion de la Materia">
       </mat-form-field>
       <div *ngIf="errors.seccion_materia" class="invalid-feedback">{{ errors.seccion_materia }}</div>
 
@@ -44,7 +44,7 @@
       <!--Seccion de salon--TELEFONO-->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Salon</mat-label>
-        <input matInput [(ngModel)]="maestro.salon_materia" mask='(000) 000-0000' placeholder="Escribe el salon de la Materia">
+        <input matInput [(ngModel)]="materia.salon_materia" mask='(000) 000-0000' placeholder="Escribe el salon de la Materia">
       </mat-form-field>
       <div *ngIf="errors.salon_materia" class="invalid-feedback">{{ errors.salon_materia}}</div>
 
@@ -52,7 +52,7 @@
        <!--Sección de Programa Educativo -->
       <mat-form-field class="mat-input" appearance="outline">
         <mat-label>Programa educativo</mat-label>
-        <mat-select [(ngModel)]="maestro.programa_materia">
+        <mat-select [(ngModel)]="materia.programa_materia">
           <mat-option *ngFor="let area of areas" [value]="area.viewValue">
             {{area.viewValue}}
           </mat-option>

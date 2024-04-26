@@ -16,7 +16,7 @@ export class RegistroMateriasComponent {
   @Input() datos_user: any = {};
 
 
-  public maestro:any= {};
+  public materia:any= {};
   public token: string = "";
   public errors:any={};
   public editar:boolean = false;
@@ -61,14 +61,14 @@ public dias:any[]= [
       this.idUser = this.activatedRoute.snapshot.params['id'];
       console.log("ID User: ", this.idUser);
       //Al iniciar la vista asignamos los datos del user
-      this.maestro = this.datos_user;
+      this.materia = this.datos_user;
     }else{
-      this.maestro = this.materiasService.esquemaMateria();
-      this.maestro.rol = this.rol;
+      this.materia = this.materiasService.esquemaMateria();
+      this.materia.rol = this.rol;
       this.token = this.facadeService.getSessionToken();
     }
     //Imprimir datos en consola
-    console.log("Maestro: ", this.maestro);
+    console.log("Maestro: ", this.materia);
   }
 
 
@@ -82,15 +82,15 @@ public dias:any[]= [
         //Validar
         this.errors = [];
 
-        this.errors = this.materiasService.validarMaestro(this.maestro, this.editar);
+        this.errors = this.materiasService.validarMaestro(this.materia, this.editar);
         if(!$.isEmptyObject(this.errors)){
           return false;
         }
 
         // TODO:Después registraremos admin
         //validar contrasena
-        if(this.maestro.password == this.maestro.confirmar_password){
-          this.materiasService.registrarMaestro(this.maestro).subscribe(
+        if(this.materia.password == this.materia.confirmar_password){
+          this.materiasService.registrarMaestro(this.materia).subscribe(
             (response: any) => {
               alert("Usuario registrado correctamente");
               console.log("Usuario registrado correctamente: ", response);
@@ -103,8 +103,8 @@ public dias:any[]= [
 
         }else{
           alert("Las contraseñas no coinciden");
-          this.maestro.password = "";
-          this.maestro.confirmar_password = "";
+          this.materia.password = "";
+          this.materia.confirmar_password = "";
         }
 
   }
@@ -113,7 +113,7 @@ public dias:any[]= [
     //Validación
     this.errors = [];
 
-    this.errors = this.materiasService.validarMaestro(this.maestro, this.editar);
+    this.errors = this.materiasService.validarMaestro(this.materia, this.editar);
     if(!$.isEmptyObject(this.errors)){
       return false;
     }
@@ -139,8 +139,8 @@ public dias:any[]= [
     console.log(event);
     console.log(event.value.toISOString());
 
-    this.maestro.fecha_nacimiento = event.value.toISOString().split("T")[0];
-    console.log("Fecha: ", this.maestro.fecha_nacimiento);
+    this.materia.fecha_nacimiento = event.value.toISOString().split("T")[0];
+    console.log("Fecha: ", this.materia.fecha_nacimiento);
   }
 
   //Checkbox para materias
@@ -148,23 +148,23 @@ public dias:any[]= [
   public checkboxChange(event:any){
     //console.log("Evento: ", event);
     if(event.checked){
-      this.maestro.dias_json.push(event.source.value)
+      this.materia.dias_json.push(event.source.value)
     }else{
       console.log(event.source.value);
-      this.maestro.dias_json.forEach((materia, i) => {
+      this.materia.dias_json.forEach((materia, i) => {
         if(materia == event.source.value){
-          this.maestro.dias_json.splice(i,1)
+          this.materia.dias_json.splice(i,1)
         }
       });
     }
-    console.log("Array dias: ", this.maestro);
+    console.log("Array dias: ", this.materia);
   }
 
 
 
   public revisarSeleccion(nombre: string){
-    if(this.maestro.dias_json){
-      var busqueda = this.maestro.dias_json.find((element)=>element==nombre);
+    if(this.materia.dias_json){
+      var busqueda = this.materia.dias_json.find((element)=>element==nombre);
       if(busqueda != undefined){
         return true;
       }else{
