@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class MaestrosService {
+export class MateriasService {
 
   constructor(
     public facadeService: FacadeService,
@@ -24,14 +24,14 @@ export class MaestrosService {
 
   public esquemaMateria(){
     return {
-      'nrc_materia': '',
-      'nombre_materia': '',
-      'seccion_materia': '',
-      'hora_inicial': '',
-      'hora_final': '',
-      'salon_materia': '',
-      'programa_materia': '',
-      'dias_json': [],
+      'rol':'',
+      'first_name': '',
+      'last_name': '',
+      'fecha_nacimiento': '',
+      'telefono': '',
+      'cubiculo': '',
+      'area_investigacion': '',
+      'materias_json': [],
     }
   }
 

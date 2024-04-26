@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { MaestrosService } from 'src/app/services/maestros.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
+import { MateriasService } from 'src/app/services/materias.service';
 
 declare var $: any;
 
@@ -47,7 +47,7 @@ public materias:any[]= [
 
   constructor(
     private location : Location,
-    private maestrosService: MaestrosService,
+    private materiasService: MateriasService,
     private router: Router,
     public activatedRoute: ActivatedRoute,
     private facadeService: FacadeService
@@ -63,7 +63,7 @@ public materias:any[]= [
       //Al iniciar la vista asignamos los datos del user
       this.maestro = this.datos_user;
     }else{
-      this.maestro = this.maestrosService.esquemaMaestro();
+      this.maestro = this.materiasService.esquemaMateria();
       this.maestro.rol = this.rol;
       this.token = this.facadeService.getSessionToken();
     }
@@ -82,7 +82,7 @@ public materias:any[]= [
         //Validar
         this.errors = [];
 
-        this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
+        this.errors = this.materiasService.validarMaestro(this.maestro, this.editar);
         if(!$.isEmptyObject(this.errors)){
           return false;
         }
@@ -90,7 +90,7 @@ public materias:any[]= [
         // TODO:Después registraremos admin
         //validar contrasena
         if(this.maestro.password == this.maestro.confirmar_password){
-          this.maestrosService.registrarMaestro(this.maestro).subscribe(
+          this.materiasService.registrarMaestro(this.maestro).subscribe(
             (response: any) => {
               alert("Usuario registrado correctamente");
               console.log("Usuario registrado correctamente: ", response);
@@ -113,13 +113,14 @@ public materias:any[]= [
     //Validación
     this.errors = [];
 
-    this.errors = this.maestrosService.validarMaestro(this.maestro, this.editar);
+    this.errors = this.materiasService.validarMaestro(this.maestro, this.editar);
     if(!$.isEmptyObject(this.errors)){
       return false;
     }
     console.log("Pasó la validación");
 
-    this.maestrosService.editarMaestro(this.maestro).subscribe(
+    /*
+    this.materiasService.editarMateria(this.maestro).subscribe(
       (response)=>{
         alert("Maestro editado correctamente");
         console.log("Maestro editado: ", response);
@@ -129,6 +130,7 @@ public materias:any[]= [
         alert("No se pudo editar el maestro");
       }
     );
+    */
   }
 
 
