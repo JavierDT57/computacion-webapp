@@ -25,14 +25,15 @@ export class RegistroMateriasComponent {
   public valoresCheckbox: any = [];
   public dias_json: any [] = [];
 
-//materias y areas de investigacion para form maestros
+//Dias y programas educativos para el form de las materias
 //Para el select
-public areas: any[] = [
+public programas: any[] = [
   {value: '1', viewValue: 'Ingenieria en Ciencias de la Computacion'},
   {value: '2', viewValue: 'Licenciatura en Ciencias de la Computacion'},
   {value: '3', viewValue: 'Ingenieria en Tecnologias de la Informacion'},
 ];
 
+//Para el checkbox
 public dias:any[]= [
   {value: '1', nombre: 'Lunes'},
   {value: '2', nombre: 'Martes'},
