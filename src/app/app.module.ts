@@ -8,6 +8,7 @@ import { LoginScreenComponent } from './screens/login-screen/login-screen.compon
 import { RegistroScreenComponent } from './screens/registro-screen/registro-screen.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 
+
 //Este import es para los servicios HTTP
 import { HttpClientModule } from '@angular/common/http';
 
@@ -22,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -63,6 +65,7 @@ import { MateriasScreenComponent } from './screens/materias-screen/materias-scre
     MatButtonModule,
     MatIconModule,
     MatDatepickerModule,
+    NgxMaterialTimepickerModule,
     MatNativeDateModule,
     MatTableModule,
     MatPaginatorModule,
