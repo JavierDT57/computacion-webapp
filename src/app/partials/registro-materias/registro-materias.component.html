@@ -29,6 +29,7 @@
         <input matInput [ngxTimepicker]="picker2" (timeSet)="onTimeSet($event)" [(ngModel)]="materia.hora_inicial" placeholder="Agregar hora" type="string">
         <ngx-material-timepicker #picker2></ngx-material-timepicker>
       </mat-form-field>
+      <div *ngIf="errors.hora_inicial" class="invalid-feedback">{{ errors.hora_inicial }}</div>
 
       <!--Sección de Hora Inical de la materia -->
       <mat-form-field class="mat-input" appearance="outline">
@@ -36,6 +37,7 @@
         <input matInput [ngxTimepicker]="picker3" (timeSet)="onTimeSet($event)" [(ngModel)]="materia.hora_final"  placeholder="Agregar hora" type="string">
         <ngx-material-timepicker #picker3></ngx-material-timepicker>
       </mat-form-field>
+      <div *ngIf="errors.hora_final" class="invalid-feedback">{{ errors.hora_final }}</div>
 
       <!--Seccion de la Materia--CUBICULO-->
       <mat-form-field class="mat-input" appearance="outline">

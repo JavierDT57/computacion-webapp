@@ -56,8 +56,12 @@ export class MateriasService {
 
 
 
-    if(!this.validatorService.required(data["fecha_nacimiento"])){
-      error["fecha_nacimiento"] = this.errorService.required;
+    if(!this.validatorService.required(data["hora_inicial"])){
+      error["hora_inicial"] = this.errorService.required;
+    }
+
+    if(!this.validatorService.required(data["hora_final"])){
+      error["hora_final"] = this.errorService.required;
     }
 
     if(!this.validatorService.required(data["seccion_materia"])){
