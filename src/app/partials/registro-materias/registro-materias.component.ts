@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
@@ -140,6 +140,13 @@ public dias:any[]= [
     console.log("Fecha: ", this.materia.fecha_nacimiento);
   }
 
+
+  //Aun no puedo imprimir en consola la hora, pero si cacha el valor en el esquemaMaterias
+  public onTimeSet(event: any) {
+    console.log(event);
+    console.log(event.value.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }));
+
+  }
   //Checkbox para materias
 
   public checkboxChange(event:any){

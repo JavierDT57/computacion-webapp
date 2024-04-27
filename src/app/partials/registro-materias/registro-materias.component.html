@@ -23,15 +23,19 @@
       </mat-form-field>
       <div *ngIf="errors.nombre_materia" class="invalid-feedback">{{ errors.nombre_materia }}</div>
 
-
-      <!--Sección de fecha de nacimiento -->
+      <!--Sección de Hora Inical de la materia -->
       <mat-form-field class="mat-input" appearance="outline">
-        <mat-label>Fecha de nacimiento</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="materia.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-label>Hora inicial</mat-label>
+        <input matInput [ngxTimepicker]="picker2" (timeSet)="onTimeSet($event)" [(ngModel)]="materia.hora_inicial" placeholder="Agregar hora" type="string">
+        <ngx-material-timepicker #picker2></ngx-material-timepicker>
       </mat-form-field>
-      <div *ngIf="errors.fecha_nacimiento" class="invalid-feedback">{{ errors.fecha_nacimiento }}</div>
+
+      <!--Sección de Hora Inical de la materia -->
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Hora final</mat-label>
+        <input matInput [ngxTimepicker]="picker3" (timeSet)="onTimeSet($event)" [(ngModel)]="materia.hora_final"  placeholder="Agregar hora" type="string">
+        <ngx-material-timepicker #picker3></ngx-material-timepicker>
+      </mat-form-field>
 
       <!--Seccion de la Materia--CUBICULO-->
       <mat-form-field class="mat-input" appearance="outline">
