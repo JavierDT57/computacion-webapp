@@ -53,9 +53,6 @@ export class MateriasService {
       error["nombre_materia"] = this.errorService.required;
     }
 
-
-
-
     if(!this.validatorService.required(data["hora_inicial"])){
       error["hora_inicial"] = this.errorService.required;
     }
