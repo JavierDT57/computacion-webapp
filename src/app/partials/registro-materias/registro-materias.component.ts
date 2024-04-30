@@ -94,7 +94,7 @@ public dias:any[]= [
           (response: any) => {//Se obtuve la peticion (se obtuvo respuesta del servicio)
             alert("Materia registrada correctamente");
             console.log("Materia registrada correctamente: ", response);
-            this.router.navigate([this.location.back() ]);
+            this.location.back();//Se dejo de ocupar el metodo this.router, debido a que no quiero regresar a la raiz de la app, solo una pagina anterior al form (Home de Admin)
           },
           (error: any) => {//No se obtuvo la peticion y se manda un alert
             alert("Error al registrar la materia, ese NRC ya fue registrado");
