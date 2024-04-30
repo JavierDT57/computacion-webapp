@@ -89,20 +89,17 @@ public dias:any[]= [
         }
 
         // TODO:Después registraremos admin
-        //validar contrasena
-        if(this.materia.password == this.materia.confirmar_password){
-          this.materiasService.registrarMaestro(this.materia).subscribe(
-            (response: any) => {
-              alert("Usuario registrado correctamente");
-              console.log("Usuario registrado correctamente: ", response);
-              this.router.navigate(['/']);
-            },
-            (error: any) => {
-              alert("Error al registrar usuario");
-            }
-          );
-
-        }
+      //Hacemos el Response para poder registrar Materias (Consumir el servicio)
+        this.materiasService.registrarMateria(this.materia).subscribe(
+          (response: any) => {//Se obtuve la peticion (se obtuvo respuesta del servicio)
+            alert("Materia registrada correctamente");
+            console.log("Materia registrada correctamente: ", response);
+            this.router.navigate([this.location.back() ]);
+          },
+          (error: any) => {//No se obtuvo la peticion y se manda un alert
+            alert("Error al registrar la materia, ese NRC ya fue registrado");
+          }
+        );
 
   }
 
