@@ -94,7 +94,7 @@ public dias:any[]= [
           (response: any) => {//Se obtuve la peticion (se obtuvo respuesta del servicio)
             alert("Materia registrada correctamente");
             console.log("Materia registrada correctamente: ", response);
-            this.location.back();//Se dejo de ocupar el metodo this.router, debido a que no quiero regresar a la raiz de la app, solo una pagina anterior al form (Home de Admin)
+            this.router.navigate(["home"]);
           },
           (error: any) => {//No se obtuvo la peticion y se manda un alert
             alert("Error al registrar la materia, ese NRC ya fue registrado");
@@ -113,18 +113,18 @@ public dias:any[]= [
     }
     console.log("Pasó la validación");
 
-    /*
-    this.materiasService.editarMateria(this.maestro).subscribe(
+
+    this.materiasService.editarMateria(this.materia).subscribe(
       (response)=>{
-        alert("Maestro editado correctamente");
-        console.log("Maestro editado: ", response);
+        alert("Materia editada correctamente");
+        console.log("Materia editada: ", response);
         //Si se editó, entonces mandar al home
         this.router.navigate(["home"]);
       }, (error)=>{
-        alert("No se pudo editar el maestro");
+        alert("No se pudo editar la materia");
       }
     );
-    */
+
   }
 
 
