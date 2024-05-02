@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/e
   templateUrl: './maestros-screen.component.html',
   styleUrls: ['./maestros-screen.component.scss']
 })
-export class MaestrosScreenComponent {
+export class MaestrosScreenComponent implements OnInit {
 
   public name_user:string = "";
   public rol:string = "";

@@ -90,14 +90,15 @@ export class MateriasService {
     return this.http.post<any>(`${environment.url_api}/materias/`,data, httpOptions);
   }
 
-  /*
+
   //Obtener la lista de maestros
-  public obtenerListaMaestros(): Observable <any>{
+  public obtenerListaMaterias(): Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
-    return this.http.get<any>(`${environment.url_api}/lista-maestros/`, {headers:headers});
+    return this.http.get<any>(`${environment.url_api}/lista-materias/`, {headers:headers});
   }
 
+  /*
   //Obtener un solo maestro dependiendo su ID
   public getMaestroByID(idUser: Number){
     return this.http.get<any>(`${environment.url_api}/maestros/?id=${idUser}`,httpOptions);

@@ -19,8 +19,8 @@
             <li class="nav-item" *ngIf="rol!='maestro' && rol!='alumno'">
               <a class="nav-link" id="maestro" (click)="clickNavLink('maestros')">Maestros</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link">Lista de materias</a>
+            <li class="nav-item" *ngIf="rol!='administrador'">
+              <a class="nav-link" id="materias" aria-current="page" (click)="clickNavLink('materias')">Lista de materias</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="graficas" (click)="clickNavLink('graficas')">Gráficas</a>

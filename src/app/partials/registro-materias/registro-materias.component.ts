@@ -11,7 +11,7 @@ declare var $: any;
   templateUrl: './registro-materias.component.html',
   styleUrls: ['./registro-materias.component.scss']
 })
-export class RegistroMateriasComponent {
+export class RegistroMateriasComponent implements OnInit {
   @Input() rol: string = "";
   @Input() datos_user: any = {};
 
