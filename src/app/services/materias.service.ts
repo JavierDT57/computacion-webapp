@@ -98,7 +98,7 @@ export class MateriasService {
     return this.http.get<any>(`${environment.url_api}/lista-materias/`, {headers:headers});
   }
 
-  /*
+
   //Obtener un solo maestro dependiendo su ID
   public getMaestroByID(idUser: Number){
     return this.http.get<any>(`${environment.url_api}/maestros/?id=${idUser}`,httpOptions);
@@ -106,10 +106,10 @@ export class MateriasService {
 
 
   //Servicio para actualizar un usuario
-  public editarMaestro (data: any): Observable <any>{
+  public editarMateria (data: any): Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
-    return this.http.put<any>(`${environment.url_api}/maestros-edit/`, data, {headers:headers});
+    return this.http.put<any>(`${environment.url_api}/materias-edit/`, data, {headers:headers});
   }
 
   //Eliminar maestro
@@ -118,5 +118,5 @@ export class MateriasService {
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.delete<any>(`${environment.url_api}/maestros-edit/?id=${idUser}`, {headers:headers});
   }
-  */
+
 }

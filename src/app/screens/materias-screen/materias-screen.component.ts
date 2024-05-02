@@ -91,9 +91,9 @@ public initPaginator(){
   );
 }
 
-//Funcion para editar
-public goEditar(idUser: number){
-  this.router.navigate(["registro-usuarios/maestro/"+idUser]);
+//Funcion para editar Materias pasandole solo el aprametro de ID del registro
+public goEditar(id: number){
+  this.router.navigate(["registro-materias/"+id]);
 }
 
 public delete(idUser: number) {
