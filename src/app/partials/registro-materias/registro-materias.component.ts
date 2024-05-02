@@ -20,10 +20,16 @@ export class RegistroMateriasComponent implements OnInit {
   public token: string = "";
   public errors:any={};
   public editar:boolean = false;
-  public idUser: Number = 0;
+  public id: Number = 0;
+  public datos_userr: any = {};
+  public user: any = {};
   //Check
   public valoresCheckbox: any = [];
   public dias_json: any [] = [];
+
+  public minTime: string = '00:00:00'; // Establece el valor mínimo deseado
+  public maxTime: string = '23:59:00'; // Establece el valor máximo deseado
+
 
 //Dias y programas educativos para el form de las materias
 //Para el select
@@ -54,22 +60,42 @@ public dias:any[]= [
     private facadeService: FacadeService
   ) { }
 
+
+
   ngOnInit(): void {
-    //El primer if valida si existe un parámetro en la URL
-    if(this.activatedRoute.snapshot.params['id'] != undefined){
+    // El primer if valida si existe un parámetro en la URL
+    if (this.activatedRoute.snapshot.params['id'] != undefined) {
       this.editar = true;
-      //Asignamos a nuestra variable global el valor del ID que viene por la URL
-      this.idUser = this.activatedRoute.snapshot.params['id'];
-      console.log("ID User: ", this.idUser);
-      //Al iniciar la vista asignamos los datos del user
-      this.materia = this.datos_user;
-    }else{
+      // Asignamos a nuestra variable global el valor del ID que viene por la URL
+      this.id = this.activatedRoute.snapshot.params['id'];
+      console.log("ID User: ", this.id); // Hasta aca estoy bien, solo falta traer los datos del
+      // Esto es lo que me falta
+      // Llama al método para obtener los datos del usuario
+      this.obtenerUserByID();
+    } else {
       this.materia = this.materiasService.esquemaMateria();
       this.materia.rol = this.rol;
       this.token = this.facadeService.getSessionToken();
     }
-    //Imprimir datos en consola
-    console.log("Maestro: ", this.materia);
+    // Imprimir datos en consola
+    console.log("Materia: ", this.materia);
+  }
+
+  public obtenerUserByID() {
+    this.materiasService.getMateriaByID(this.id).subscribe(
+      (response) => {
+        this.user = response;
+        console.log("Datos materia: ", this.user);
+        this.initMateria(); // Llama a la función que inicializa this.materia después de obtener los datos del usuario
+      },
+      (error) => {
+        alert("No se pudieron obtener los datos de la materia para editar");
+      }
+    );
+  }
+  // Esta función inicializa this.materia después de obtener los datos del usuario
+  private initMateria() {
+    this.materia = this.user;
   }
 
 
@@ -127,15 +153,22 @@ public dias:any[]= [
 
   }
 
-
-    //Función para detectar el cambio de fecha
-  public changeFecha(event :any){
+  public changeHora(event: any) {
     console.log(event);
-    console.log(event.value.toISOString());
 
-    this.materia.fecha_nacimiento = event.value.toISOString().split("T")[0];
-    console.log("Fecha: ", this.materia.fecha_nacimiento);
+    // Obtiene la hora y los minutos de la fecha seleccionada
+    const horaSeleccionada = event.value.getHours();
+    const minutosSeleccionados = event.value.getMinutes();
+
+    // Formatea la hora y los minutos en una cadena de texto con el formato deseado
+    const horaFormateada = horaSeleccionada.toString().padStart(2, '0') + ':' + minutosSeleccionados.toString().padStart(2, '0');
+
+    // Asigna la hora formateada al modelo de datos
+    this.materia.hora_inicial = horaFormateada;
+
+    console.log("Hora: ", this.materia.hora_inicial);
   }
+
 
 
   //Aun no puedo imprimir en consola la hora, pero si cacha el valor en el esquemaMaterias

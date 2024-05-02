@@ -98,6 +98,11 @@ export class MateriasService {
     return this.http.get<any>(`${environment.url_api}/lista-materias/`, {headers:headers});
   }
 
+  //Obtener un solo maestro dependiendo su ID
+  public getMateriaByID(id: Number){
+    return this.http.get<any>(`${environment.url_api}/materias/?id=${id}`,httpOptions);
+  }
+
 
   //Servicio para actualizar un usuario
   public editarMateria (data: any): Observable <any>{
