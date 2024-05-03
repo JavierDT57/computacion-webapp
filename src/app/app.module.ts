@@ -38,6 +38,7 @@ import { EliminarUserModalComponent } from './modals/eliminar-user-modal/elimina
 import { RegistroMateriasComponent } from './partials/registro-materias/registro-materias.component';
 import { MateriasScreenComponent } from './screens/materias-screen/materias-screen.component';
 import { EliminarMateriaModalComponent } from './modals/eliminar-materia-modal/eliminar-materia-modal.component';
+import { EditarMateriaModalComponent } from './modals/editar-materia-modal/editar-materia-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { EliminarMateriaModalComponent } from './modals/eliminar-materia-modal/e
     EliminarUserModalComponent,
     RegistroMateriasComponent,
     MateriasScreenComponent,
-    EliminarMateriaModalComponent
+    EliminarMateriaModalComponent,
+    EditarMateriaModalComponent
   ],
   imports: [
     BrowserModule,
