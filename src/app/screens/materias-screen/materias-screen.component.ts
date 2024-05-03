@@ -96,10 +96,10 @@ public goEditar(id: number){
   this.router.navigate(["registro-materias/"+id]);
 }
 
-public delete(idUser: number) {
-  console.log("User: ", idUser);
+public delete(id: number) {
+  console.log("User: ", id);
   const dialogRef = this.dialog.open(EliminarUserModalComponent,{
-    data:{id:idUser, rol: 'maestro'}, //Se pasan los valores a trabes del componente
+    data:{id:id, rol: 'maestro'}, //Se pasan los valores a trabes del componente
     height: '288px',
     width: '328px'
   });
