@@ -3,6 +3,8 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { MateriasService } from 'src/app/services/materias.service';
+import { EditarMateriaModalComponent } from 'src/app/modals/editar-materia-modal/editar-materia-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 declare var $: any;
 
@@ -52,8 +54,10 @@ public dias:any[]= [
 
 
 
+
   constructor(
     private location : Location,
+    public dialog: MatDialog,
     private materiasService: MateriasService,
     private router: Router,
     public activatedRoute: ActivatedRoute,
@@ -139,17 +143,23 @@ public dias:any[]= [
     }
     console.log("Pasó la validación");
 
+    const dialogRef = this.dialog.open(EditarMateriaModalComponent,{
+      data:{materia:this.materia}, //Se pasan los valores a trabes del componente
+      height: '288px',
+      width: '328px'
+    });
 
-    this.materiasService.editarMateria(this.materia).subscribe(
-      (response)=>{
-        alert("Materia editada correctamente");
-        console.log("Materia editada: ", response);
-        //Si se editó, entonces mandar al home
-        this.router.navigate(["home"]);
-      }, (error)=>{
-        alert("No se pudo editar la materia");
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isDeleted){
+        console.log("Materia editada");
+        //Recargar pagina
+        window.location.reload();
+      }else{
+        alert("Materia no editada")
+        console.log("Materia no editada");
       }
-    );
+    });
 
   }
 

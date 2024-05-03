@@ -9,7 +9,6 @@ import { MateriasService } from 'src/app/services/materias.service';
 })
 export class EliminarMateriaModalComponent implements OnInit{
 
-  public rol: string = "";
 
   constructor(
     private MateriasService: MateriasService,
