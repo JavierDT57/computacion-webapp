@@ -21,6 +21,7 @@ export class MateriasScreenComponent implements OnInit {
   public rol:string = "";
   public token : string = "";
   public lista_materias: any[] = [];
+  public rolUsuario: string = "";
 //Para la tabla
 displayedColumns: string[] = ['nrc_materia', 'nombre_materia', 'hora_inicial', 'hora_final','seccion_materia', 'salon_materia', 'programa_materia', 'dias_json', 'editar', 'eliminar'];
 
@@ -50,6 +51,12 @@ ngOnInit(): void {
   this.obtenerMaterias();
   //Para paginador
   this.initPaginator();
+
+
+
+
+  this.rolUsuario  = this.facadeService.getUserGroup();
+  console.log("Rol Tmaterias: ", this.rolUsuario );
 }
 //Para paginación
 public initPaginator(){
