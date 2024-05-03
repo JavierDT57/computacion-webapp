@@ -112,7 +112,7 @@ export class MateriasService {
   }
 
   //Eliminar materia
-  public eliminarMaestro(id: number):Observable <any>{
+  public eliminarMateria(id: number):Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.delete<any>(`${environment.url_api}/materias-edit/?id=${id}`, {headers:headers});

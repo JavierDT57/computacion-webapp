@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { MateriasService } from 'src/app/services/materias.service';
 import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
+import { EliminarMateriaModalComponent } from 'src/app/modals/eliminar-materia-modal/eliminar-materia-modal.component';
 
 
 
@@ -98,25 +99,25 @@ public goEditar(id: number){
 
 public delete(id: number) {
   console.log("User: ", id);
-  const dialogRef = this.dialog.open(EliminarUserModalComponent,{
-    data:{id:id, rol: 'maestro'}, //Se pasan los valores a trabes del componente
+  const dialogRef = this.dialog.open(EliminarMateriaModalComponent,{
+    data:{id:id}, //Se pasan los valores a trabes del componente
     height: '288px',
     width: '328px'
   });
 
   dialogRef.afterClosed().subscribe(result => {
     if(result.isDeleted){
-      console.log("Maestro eliminado");
+      console.log("Materia eliminada");
       //Recargar pagina
       window.location.reload();
     }else{
-      alert("Maestro no eliminado")
-      console.log("Usuario no eliminado");
+      alert("Materia no eliminada")
+      console.log("Materia no eliminado");
     }
   });
 }
 
-}
+}//Fin
 
 //Esto va fuera de la llave que cierra la clase
 export interface DatosUsuario {
