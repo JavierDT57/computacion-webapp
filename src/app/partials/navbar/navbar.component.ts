@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 declare var $:any;
 @Component({
@@ -12,23 +12,40 @@ export class NavbarComponent implements OnInit{
   @Input() tipo: string = "";
   @Input() rol:string ="";
 
-  public rolUsuario: string = "";
+  public editar:boolean = false;
 
   public token:string = "";
 
   constructor(
     private router:Router,
     private facadeService: FacadeService,
+    public activatedRoute: ActivatedRoute,
   ){}
 
   ngOnInit(): void {
-    this.rolUsuario  = this.facadeService.getUserGroup();
-    console.log("Rol NavBar: ", this.rolUsuario );
+    this.rol  = this.facadeService.getUserGroup();
+    console.log("Rol NavBar: ", this.rol);
+
+
+    this.token = this.facadeService.getSessionToken();
+    if(this.activatedRoute.snapshot.params['id'] != undefined){
+      this.editar = true;
+    }
   }
 
 
   public logout(){
 
+    this.facadeService.logout().subscribe(
+      (response)=>{
+        console.log("Entró");
+        this.facadeService.destroyUser();
+        //Navega al login
+        this.router.navigate(["/"]);
+      }, (error)=>{
+        console.error(error);
+      }
+    );
   }
 
   public goRegistro(){
