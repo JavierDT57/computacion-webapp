@@ -40,6 +40,7 @@ import { MateriasScreenComponent } from './screens/materias-screen/materias-scre
 import { EliminarMateriaModalComponent } from './modals/eliminar-materia-modal/eliminar-materia-modal.component';
 import { EditarMateriaModalComponent } from './modals/editar-materia-modal/editar-materia-modal.component';
 import { GraficasScreenComponent } from './screens/graficas-screen/graficas-screen.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { GraficasScreenComponent } from './screens/graficas-screen/graficas-scre
     MatDialogModule,
     MatSelectModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
