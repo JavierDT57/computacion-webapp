@@ -100,6 +100,8 @@ public dias:any[]= [
   // Esta función inicializa this.materia después de obtener los datos del usuario del response guardada en la variable this.user
   private initMateria() {
     this.materia = this.user;
+    this.materia.hora_inicial = this.materia.hora_inicial.slice(0,5);
+    this.materia.hora_final = this.materia.hora_final.slice(0,5);
   }
 
 
