@@ -16,7 +16,7 @@ import { EliminarMateriaModalComponent } from 'src/app/modals/eliminar-materia-m
 })
 export class MateriasScreenComponent implements OnInit {
 
-
+  //Variables a ocupar
   public name_user:string = "";
   public rol:string = "";
   public token : string = "";
@@ -81,36 +81,37 @@ public initPaginator(){
   },500);
   //this.dataSourceIngresos.paginator = this.paginator;
 }
- //Obtener alumnos
+ //Obtener las materias de la BD
  public obtenerMaterias(){
-  this.materiasService.obtenerListaMaterias().subscribe(
+  this.materiasService.obtenerListaMaterias().subscribe(//Se consume la funcion de obtener materias, el cual esta enlazada al EndPoint de la api en el URL
     (response)=>{
-      this.lista_materias = response;
-      console.log("Lista users: ", this.lista_materias);
-      if(this.lista_materias.length > 0){
+      this.lista_materias = response;//Si todo sale bien, todo el JSON de materias del response, es guardada en la variables this.lista_materias
+      console.log("Lista users: ", this.lista_materias);//Se imprime en consola para corroborar su funcionamiento
+      if(this.lista_materias.length > 0){//Poder ordenarla en la table
         console.log("Otro user: ", this.lista_materias);
 
         this.dataSource = new MatTableDataSource<DatosUsuario>(this.lista_materias as DatosUsuario[]);
       }
     }, (error)=>{
-      alert("No se pudo obtener la lista de materias");
+      alert("No se pudo obtener la lista de materias");//Mensaje de error en un alert en caso de error
     }
   );
 }
 
-//Funcion para editar Materias pasandole solo el aprametro de ID del registro
+//Funcion para editar Materias pasandole solo el parametro de ID del registro
 public goEditar(id: number){
-  this.router.navigate(["registro-materias/"+id]);
+  this.router.navigate(["registro-materias/"+id]);//Se consume el registro materias, anadiendole el ID en cuestion de la materia que se va a editar
 }
 
+//Funcion para borrar materias
 public delete(id: number) {
   console.log("User: ", id);
-  const dialogRef = this.dialog.open(EliminarMateriaModalComponent,{
-    data:{id:id}, //Se pasan los valores a trabes del componente
+  const dialogRef = this.dialog.open(EliminarMateriaModalComponent,{//Si le da al icono de eliminar materias, mostrara el modal de eliminar
+    data:{id:id}, //Se pasan los valores a trabes del componente, en este caso se le asigna el ID de la materia a la variable id, que se ocupara en el TS del modal para su eliminacion
     height: '288px',
     width: '328px'
   });
-
+  //Alerts para mostrar si se elimino o no la materia, asimismo se muestra en consola para verificar su funcionamiento
   dialogRef.afterClosed().subscribe(result => {
     if(result.isDeleted){
       console.log("Materia eliminada");

@@ -22,6 +22,7 @@ export class MateriasService {
     private errorService: ErrorsService,
   ) { }
 
+  //Esquema del form para materias
   public esquemaMateria(){
     return {
       'rol':'',
@@ -85,7 +86,7 @@ export class MateriasService {
   }
 
   //Aquí van los servicios HTTP
-  //Servicio para registrar un nuevo usuario
+  //Servicio para registrar una nueva materia
   public registrarMateria (data: any): Observable <any>{
     return this.http.post<any>(`${environment.url_api}/materias/`,data, httpOptions);
   }
@@ -104,7 +105,7 @@ export class MateriasService {
   }
 
 
-  //Servicio para actualizar un usuario
+  //Servicio para actualizar-editar materia
   public editarMateria (data: any): Observable <any>{
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});

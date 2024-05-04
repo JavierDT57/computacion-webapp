@@ -8,12 +8,12 @@ declare var $:any;
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
-
+  //Decoradores
   @Input() tipo: string = "";
   @Input() rol:string ="";
 
+  //Variables a ocuapr para  almacenar el token y activar la bandera de editar
   public editar:boolean = false;
-
   public token:string = "";
 
   constructor(
@@ -23,19 +23,19 @@ export class NavbarComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+    //Con esto cachamos el rol que esta en la pagina, ocuoando el componente FacadeService y lo almacenamos en la variables rol
     this.rol  = this.facadeService.getUserGroup();
-    console.log("Rol NavBar: ", this.rol);
+    console.log("Rol NavBar: ", this.rol);//Imprimimos el rol en consola para verificar que funciona
 
-
+    //Con esta funcion obtenemos el token del usuario logueado mediante su ID
     this.token = this.facadeService.getSessionToken();
     if(this.activatedRoute.snapshot.params['id'] != undefined){
       this.editar = true;
     }
   }
 
-
+  //Funcion para poder cerrar secion
   public logout(){
-
     this.facadeService.logout().subscribe(
       (response)=>{
         console.log("Entró");
@@ -47,7 +47,7 @@ export class NavbarComponent implements OnInit{
       }
     );
   }
-
+  //Nos redirige a los componentes de registro de usuarios o materias
   public goRegistro(){
     this.router.navigate(["registro-usuarios"]);
   }

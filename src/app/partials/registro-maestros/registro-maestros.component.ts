@@ -194,6 +194,7 @@ public materias:any[]= [
     }
   }
 
+  //Revisa que materias fueron seleccionadas al momento de editarlas en la vista de edicion de la misma
   public revisarSeleccion(nombre: string){
     if(this.maestro.materias_json){
       var busqueda = this.maestro.materias_json.find((element)=>element==nombre);

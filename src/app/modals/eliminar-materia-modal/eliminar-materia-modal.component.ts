@@ -24,9 +24,9 @@ export class EliminarMateriaModalComponent implements OnInit{
   }
 
   public eliminarMateria(){
-      this.MateriasService.eliminarMateria(this.data.id).subscribe(
+      this.MateriasService.eliminarMateria(this.data.id).subscribe(//Se le pasa el data del id de la materia para eliminarla, que fue mandada del componente MateriasScreen
         (response)=>{
-          console.log("Materia eliminada");
+          console.log("Materia eliminada");//Entra el response y manda a imprimir a consola que se realizo correctamente la eliminacion de la materia
           this.dialogRef.close({isDeleted: true});
         }, (error)=>{
           this.dialogRef.close({isDeleted: false});
