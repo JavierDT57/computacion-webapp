@@ -35,6 +35,7 @@ export class GraficasScreenComponent implements OnInit{
           datasets: [
             {
               data: this.data,//Se pasa la informacion de los usuarios registrados de manera dinamica
+              label: 'Registro de usuarios',
               backgroundColor: '#F88406'
             }
           ]
@@ -46,6 +47,7 @@ export class GraficasScreenComponent implements OnInit{
           datasets: [
             {
               data: this.data,//Se pasa la informacion de los usuarios registrados de manera dinamica
+              label: 'Registro de usuarios',
               backgroundColor: [
                 '#F88406',
                 '#FCFF44',
@@ -62,7 +64,6 @@ export class GraficasScreenComponent implements OnInit{
           datasets: [
             {
               data: this.data,//Se pasa la informacion de los usuarios registrados de manera dinamica
-              label: 'Registro de usuarios',
               backgroundColor: [
                 '#FCFF44',
                 '#F1C8F2',
@@ -76,8 +77,7 @@ export class GraficasScreenComponent implements OnInit{
           labels: ["Administradores", "Maestros", "Alumnos"],//Se incorporan el tipo de usuario, conforme se devuelve el response desde la API
           datasets: [
             {
-              data: this.data,//Se pasa la informacion de los usuarios registrados de manera dinamica
-              label: 'Registro de usuarios',
+              data: this.data,//Se pasa la informacion de los usuarios registrados de manera dinamica,
               backgroundColor: [
                 '#F88406',
                 '#FCFF44',
