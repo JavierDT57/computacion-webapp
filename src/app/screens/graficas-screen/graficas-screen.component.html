@@ -17,8 +17,9 @@
             </div>
           </div>
         </div>
-        <!-- Home para la sección de gráficas -->
+        <!-- Home para la sección de gráficas y pueda seccionarse-->
         <div class="row w-100" style="text-align: center;">
+          <!-- Gráfica Histograma -->
           <div class="col-12">
             <div class="row">
               <div class="col-6 graph">
@@ -31,7 +32,7 @@
                   [plugins]="lineChartPlugins"
                   [options]="lineChartOption"></canvas>
               </div>
-              <!-- Barras -->
+              <!-- Gráfica de Barras -->
               <div class="col-6 graph">
                 <canvas
                   baseChart
@@ -52,7 +53,7 @@
             </div>
           </div>
         </div>
-        <!-- Gráfica circular y de dona-->
+        <!-- Gráfica Circular -->
         <div class="row w-100 mt-5 mb-5" style="text-align: center;">
           <div class="col-6 graph">
             <canvas
@@ -64,6 +65,7 @@
               [plugins]="pieChartPlugins"
               [options]="pieChartOption"></canvas>
           </div>
+          <!-- Gráfica de Dona -->
           <div class="col-6 graph">
             <canvas
               baseChart
